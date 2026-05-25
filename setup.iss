@@ -7,7 +7,7 @@
 ; (To generate a new GUID, click Tools | Generate GUID inside the IDE.)
 AppId={{F5945615-15E2-4389-AABE-C6ED44298375}
 AppName=LightBrowse
-AppVersion=1.5.2
+AppVersion=0.0.30
 ;AppVerName=LightBrowse 1.5.2
 AppPublisher=FlareOS
 DefaultDirName={autopf}\LightBrowse
