@@ -1,5 +1,5 @@
-﻿// LightBrowse Legacy - browser.cpp
-// A lightweight browser for classic Windows (XP/Vista/7/8) using IE/Trident engine
+﻿// LightBrowse Legacy - main.cpp
+// A lightweight browser using IE/Trident engine
 //
 // Compile:
 //   g++ browser.cpp -o browser.exe -lole32 -loleaut32 -luuid -lshlwapi -lcomctl32 -lcomdlg32 -lgdi32
@@ -11,6 +11,7 @@
 //            Ctrl+L/F6=address bar, Ctrl+R/F5=refresh, Esc=stop,
 //            Ctrl+D=bookmark, Ctrl+B=bookmarks, Ctrl+H=history,
 //            Alt+Left=back, Alt+Right=forward
+// Goodluck with compiling ;)
 
 #define UNICODE
 #define _UNICODE
