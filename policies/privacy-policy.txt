@@ -1,0 +1,58 @@
+Privacy Policy for LightBrowse
+Effective Date: May 25, 2026
+
+Welcome to LightBrowse, a privacy-focused web browser built using the Internet Explorer rendering engine.
+
+Your privacy is a core principle of LightBrowse. By default, LightBrowse does not collect, store, transmit, or sell any personal data.
+
+1. No Data Collection by Default
+LightBrowse does not collect:
+- Personal information
+- Browsing history
+- Search queries
+- Device identifiers
+- IP addresses
+- Usage analytics
+- Crash reports
+- Telemetry data
+
+2. No Telemetry
+LightBrowse contains no telemetry systems or hidden analytics.
+
+We do not track how you use the browser.
+
+3. Downloads
+LightBrowse supports file downloads.
+
+Downloaded files are stored locally on your device only. LightBrowse does not upload, scan, or transmit downloaded files to our servers.
+
+4. Local Browser Data
+To function normally, LightBrowse may store data only on your device, including:
+- Cookies from websites you visit
+- Cached files
+- Download history
+- Saved settings/preferences
+- Bookmarks (if supported)
+
+This data remains local and is not transmitted to us.
+
+5. Security Features
+LightBrowse may include optional security protections designed to help identify unsafe or malicious websites.
+
+These protections operate locally whenever possible and do not send your browsing history to us.
+
+If a future version of LightBrowse ever requires limited data processing for security purposes, users will be clearly informed and asked for consent where required.
+
+6. Third-Party Websites
+Websites visited through LightBrowse may collect data under their own privacy policies. LightBrowse is not responsible for third-party data practices.
+
+7. Children's Privacy
+LightBrowse does not knowingly collect personal information from children—or any users—because it does not collect user data.
+
+8. Changes to This Policy
+If our privacy practices ever change, this Privacy Policy will be updated before those changes take effect.
+
+9. Contact
+Questions about this Privacy Policy can be sent to:
+
+asterixany@gmail.com

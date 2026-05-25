@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=11">
+<title>New Tab - LightBrowse</title>
+<style>
+* { margin:0; padding:0; -webkit-box-sizing:border-box; box-sizing:border-box; }
+ 
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 13px;
+  color: #1a1a1a;
+  min-height: 100vh;
+  background-color: #4a7fb5;
+  background-image: -ms-linear-gradient(top, #2c5a8c 0%, #5a9fd4 40%, #b8d4ec 100%);
+  background-image: -webkit-linear-gradient(top, #2c5a8c 0%, #5a9fd4 40%, #b8d4ec 100%);
+  background-image: linear-gradient(to bottom, #2c5a8c 0%, #5a9fd4 40%, #b8d4ec 100%);
+  background-attachment: fixed;
+}
+ 
+/* ===== TOPBAR (matches index.html) ===== */
+#topbar {
+  position: relative;
+  z-index: 100;
+  background-color: rgba(18,42,72,0.90);
+  background-image: -ms-linear-gradient(top, rgba(50,90,140,0.95) 0%, rgba(18,42,72,0.95) 100%);
+  background-image: -webkit-linear-gradient(top, rgba(50,90,140,0.95) 0%, rgba(18,42,72,0.95) 100%);
+  background-image: linear-gradient(to bottom, rgba(50,90,140,0.95) 0%, rgba(18,42,72,0.95) 100%);
+  border-bottom: 1px solid rgba(255,255,255,0.18);
+  -webkit-box-shadow: 0 2px 8px rgba(0,0,0,0.5);
+          box-shadow: 0 2px 8px rgba(0,0,0,0.5);
+}
+#topbar-inner { width: 960px; margin: 0 auto; padding: 0; }
+#topbar table { width: 100%; border-collapse: collapse; }
+#topbar table td { padding: 10px 8px; vertical-align: middle; }
+.logo-cell { width: 220px; }
+.logo-link { text-decoration: none; display: inline-block; }
+.logo-name { font-size: 22px; font-weight: 600; color: #ffffff; letter-spacing: -0.5px; text-shadow: 0 1px 3px rgba(0,0,0,0.5); }
+.logo-name span { color: #7ec8f0; }
+.logo-tag { font-size: 10px; color: rgba(255,255,255,0.55); text-transform: uppercase; letter-spacing: 1px; display: block; margin-top: -2px; padding-left: 2px; }
+.nav-cell { text-align: right; }
+.nav-cell a { display: inline-block; color: rgba(255,255,255,0.82); text-decoration: none; font-size: 13px; padding: 5px 12px; margin-left: 2px; border-radius: 3px; border: 1px solid transparent; }
+.nav-cell a:hover { color: #ffffff; background-color: rgba(255,255,255,0.12); border-color: rgba(255,255,255,0.2); }
+.nav-cell a.btn-download { background-color: rgba(50,140,220,0.8); border-color: rgba(120,190,255,0.5); color:#ffffff; font-weight:600; padding:5px 14px; }
+.nav-cell a.btn-download:hover { background-color: rgba(70,160,240,0.9); }
+text
+/* ===== MAIN ===== */
+#main { padding: 48px 0 60px 0; }
+#main-inner { width: 960px; margin: 0 auto; padding: 0 10px; }
+ 
+/* ===== GREETING ===== */
+#greeting {
+  text-align: center;
+  margin-bottom: 32px;
+}
+#greeting-text {
+  font-size: 28px;
+  font-weight: 300;
+  color: #ffffff;
+  text-shadow: 0 1px 4px rgba(0,0,0,0.45);
+  letter-spacing: -0.3px;
+  margin-bottom: 4px;
+}
+#greeting-text strong { font-weight: 700; }
+#greeting-date {
+  font-size: 13px;
+  color: rgba(255,255,255,0.65);
+  text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+}
+ 
+/* ===== SEARCH BOX ===== */
+#searchbox-wrap {
+  margin: 0 auto 36px auto;
+  max-width: 580px;
+}
+.searchbox-panel {
+  background-color: rgba(220,235,250,0.82);
+  border: 1px solid rgba(255,255,255,0.88);
+  border-bottom-color: rgba(80,130,190,0.45);
+  border-right-color: rgba(80,130,190,0.30);
+  -webkit-box-shadow: 0 2px 12px rgba(0,0,0,0.25), inset 0 1px 0 rgba(255,255,255,0.9);
+          box-shadow: 0 2px 12px rgba(0,0,0,0.25), inset 0 1px 0 rgba(255,255,255,0.9);
+  background-image: -ms-linear-gradient(135deg, rgba(255,255,255,0.80) 0%, rgba(200,225,248,0.72) 100%);
+  background-image: -webkit-linear-gradient(135deg, rgba(255,255,255,0.80) 0%, rgba(200,225,248,0.72) 100%);
+  background-image: linear-gradient(to bottom right, rgba(255,255,255,0.80) 0%, rgba(200,225,248,0.72) 100%);
+  border-radius: 4px;
+  padding: 24px 28px 22px 28px;
+}
+.search-label {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: #2a6aad;
+  font-weight: 600;
+  margin-bottom: 10px;
+  display: block;
+}
+#search-form { display: -ms-flexbox; display: -webkit-flex; display: flex; }
+#search-input {
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  padding: 8px 12px;
+  font-size: 14px;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  color: #1a1a1a;
+  background-color: #ffffff;
+  background-image: -ms-linear-gradient(top, #f0f5fb, #ffffff);
+  background-image: -webkit-linear-gradient(top, #f0f5fb, #ffffff);
+  background-image: linear-gradient(to bottom, #f0f5fb, #ffffff);
+  border: 1px solid rgba(60,110,180,0.45);
+  border-right: none;
+  border-radius: 3px 0 0 3px;
+  outline: none;
+  -webkit-box-shadow: inset 0 1px 3px rgba(0,0,0,0.12);
+          box-shadow: inset 0 1px 3px rgba(0,0,0,0.12);
+}
+#search-input:focus {
+  border-color: #4a90d9;
+  -webkit-box-shadow: inset 0 1px 3px rgba(0,0,0,0.15), 0 0 0 2px rgba(74,144,217,0.25);
+          box-shadow: inset 0 1px 3px rgba(0,0,0,0.15), 0 0 0 2px rgba(74,144,217,0.25);
+}
+#search-btn {
+  padding: 8px 20px;
+  font-size: 13px;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-weight: 600;
+  color: #ffffff;
+  cursor: pointer;
+  border: 1px solid #1565c0;
+  border-radius: 0 3px 3px 0;
+  background-color: #1976d2;
+  background-image: -ms-linear-gradient(top, #2196f3, #1565c0);
+  background-image: -webkit-linear-gradient(top, #2196f3, #1565c0);
+  background-image: linear-gradient(to bottom, #2196f3, #1565c0);
+  -webkit-box-shadow: 0 2px 4px rgba(0,0,0,0.25), inset 0 1px 0 rgba(255,255,255,0.25);
+          box-shadow: 0 2px 4px rgba(0,0,0,0.25), inset 0 1px 0 rgba(255,255,255,0.25);
+  text-shadow: 0 1px 1px rgba(0,0,0,0.3);
+}
+#search-btn:hover {
+  background-image: -ms-linear-gradient(top, #42a5f5, #1976d2);
+  background-image: -webkit-linear-gradient(top, #42a5f5, #1976d2);
+  background-image: linear-gradient(to bottom, #42a5f5, #1976d2);
+}
+#search-btn:active {
+  background-image: -ms-linear-gradient(top, #1565c0, #2196f3);
+  background-image: -webkit-linear-gradient(top, #1565c0, #2196f3);
+  background-image: linear-gradient(to bottom, #1565c0, #2196f3);
+  -webkit-box-shadow: inset 0 2px 4px rgba(0,0,0,0.2);
+          box-shadow: inset 0 2px 4px rgba(0,0,0,0.2);
+}
+.search-powered {
+  font-size: 11px;
+  color: #4a6a8a;
+  margin-top: 8px;
+  text-align: right;
+}
+ 
+/* ===== TWO COLUMN LAYOUT ===== */
+#columns { display: -ms-flexbox; display: -webkit-flex; display: flex; gap: 20px; -webkit-align-items: flex-start; align-items: flex-start; }
+/* IE10/11 flex gap fallback via margin */
+#col-left  { -webkit-flex: 1; -ms-flex: 1; flex: 1; margin-right: 10px; }
+#col-right { width: 300px; margin-left: 10px; }
+ 
+/* ===== PANEL (shared card style from index.html info-card) ===== */
+.panel { border-radius: 4px; overflow: hidden; margin-bottom: 18px; }
+.panel-head {
+  background-color: #1c4880;
+  background-image: -ms-linear-gradient(top, #2a6aad, #1c4880);
+  background-image: -webkit-linear-gradient(top, #2a6aad, #1c4880);
+  background-image: linear-gradient(to bottom, #2a6aad, #1c4880);
+  padding: 10px 14px;
+  border: 1px solid rgba(255,255,255,0.2);
+  border-bottom: none;
+}
+.panel-head-title { font-size: 12px; font-weight: 700; color: #ffffff; text-shadow: 0 1px 2px rgba(0,0,0,0.4); text-transform: uppercase; letter-spacing: 0.8px; }
+.panel-body {
+  background-color: rgba(220,235,250,0.85);
+  background-image: -ms-linear-gradient(top, rgba(255,255,255,0.80), rgba(200,225,248,0.75));
+  background-image: -webkit-linear-gradient(top, rgba(255,255,255,0.80), rgba(200,225,248,0.75));
+  background-image: linear-gradient(to bottom, rgba(255,255,255,0.80), rgba(200,225,248,0.75));
+  border: 1px solid rgba(255,255,255,0.8);
+  border-bottom-color: rgba(80,130,190,0.4);
+  -webkit-box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+          box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  padding: 14px 16px;
+}
+ 
+/* ===== BOOKMARKS ===== */
+.bookmark-item {
+  display: block;
+  padding: 7px 10px;
+  margin-bottom: 4px;
+  text-decoration: none;
+  color: #1558a0;
+  font-size: 13px;
+  border-radius: 3px;
+  border: 1px solid transparent;
+  background-color: transparent;
+  -webkit-transition: background-color 0.1s, border-color 0.1s;
+  transition: background-color 0.1s, border-color 0.1s;
+  /* icon via inline unicode star */
+}
+.bookmark-item:hover {
+  background-color: rgba(255,255,255,0.7);
+  border-color: rgba(60,110,180,0.3);
+  -webkit-box-shadow: 0 1px 3px rgba(0,0,0,0.1), inset 0 1px 0 rgba(255,255,255,0.9);
+          box-shadow: 0 1px 3px rgba(0,0,0,0.1), inset 0 1px 0 rgba(255,255,255,0.9);
+}
+.bookmark-item:active {
+  background-color: rgba(200,220,240,0.8);
+}
+.bookmark-icon { color: #e8a000; margin-right: 7px; font-size: 12px; }
+.bookmark-title { font-weight: 600; }
+.bookmark-url { display: block; font-size: 11px; color: #5a7a9a; margin-top: 1px; margin-left: 19px; }
+.bm-divider { height: 1px; background-color: rgba(80,130,190,0.2); margin: 6px 0; }
+ 
+/* ===== QUICK LINKS ===== */
+.quicklinks-grid { display: -ms-flexbox; display: -webkit-flex; display: flex; -webkit-flex-wrap: wrap; flex-wrap: wrap; gap: 8px; }
+.ql-item {
+  display: block;
+  width: calc(50% - 4px);
+  padding: 10px 12px;
+  text-decoration: none;
+  color: #1558a0;
+  font-size: 12px;
+  font-weight: 600;
+  border-radius: 3px;
+  border: 1px solid rgba(60,110,180,0.3);
+  background-color: rgba(255,255,255,0.6);
+  background-image: -ms-linear-gradient(top, rgba(255,255,255,0.8), rgba(200,220,240,0.65));
+  background-image: -webkit-linear-gradient(top, rgba(255,255,255,0.8), rgba(200,220,240,0.65));
+  background-image: linear-gradient(to bottom, rgba(255,255,255,0.8), rgba(200,220,240,0.65));
+  -webkit-box-shadow: 0 1px 3px rgba(0,0,0,0.12), inset 0 1px 0 rgba(255,255,255,0.85);
+          box-shadow: 0 1px 3px rgba(0,0,0,0.12), inset 0 1px 0 rgba(255,255,255,0.85);
+  text-align: center;
+  -webkit-transition: background-color 0.1s;
+  transition: background-color 0.1s;
+}
+.ql-item:hover {
+  background-image: -ms-linear-gradient(top, rgba(255,255,255,0.95), rgba(210,230,248,0.85));
+  background-image: -webkit-linear-gradient(top, rgba(255,255,255,0.95), rgba(210,230,248,0.85));
+  background-image: linear-gradient(to bottom, rgba(255,255,255,0.95), rgba(210,230,248,0.85));
+  border-color: rgba(60,110,180,0.55);
+}
+.ql-icon { font-size: 18px; display: block; margin-bottom: 4px; }
+.ql-label { font-size: 11px; color: #2a4a6a; }
+ 
+/* ===== TIPS PANEL ===== */
+.tip-item { font-size: 12px; color: #2a3d52; line-height: 1.6; padding: 5px 0; border-bottom: 1px solid rgba(80,130,190,0.15); }
+.tip-item:last-child { border-bottom: none; padding-bottom: 0; }
+.tip-key {
+  display: inline-block;
+  background-color: #1c4880;
+  background-image: -ms-linear-gradient(top, #2a6aad, #1c4880);
+  background-image: -webkit-linear-gradient(top, #2a6aad, #1c4880);
+  background-image: linear-gradient(to bottom, #2a6aad, #1c4880);
+  color: #fff;
+  font-size: 10px;
+  font-weight: 700;
+  padding: 1px 6px;
+  border-radius: 2px;
+  letter-spacing: 0.3px;
+  -webkit-box-shadow: 0 1px 2px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.2);
+          box-shadow: 0 1px 2px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.2);
+  margin-right: 4px;
+}
+ 
+/* ===== FOOTER ===== */
+#footer { background-color: rgba(8,20,45,0.90); border-top: 1px solid rgba(255,255,255,0.10); padding: 14px 0; position: fixed; bottom: 0; width: 100%; }
+#footer-inner { width: 960px; margin: 0 auto; padding: 0 10px; }
+#footer table { width: 100%; border-collapse: collapse; }
+#footer td { padding: 0; vertical-align: middle; }
+.footer-copy { font-size: 12px; color: rgba(180,200,225,0.6); }
+.footer-copy a { color: rgba(126,200,240,0.8); text-decoration: none; }
+.footer-links { text-align: right; }
+.footer-links a { font-size: 12px; color: rgba(180,200,225,0.65); text-decoration: none; margin-left: 18px; }
+.footer-links a:hover { color: rgba(126,200,240,0.9); text-decoration: underline; }
+</style>
+</head>
+<body>
+ 
+<!-- Top bar -->
+<div id="topbar">
+  <div id="topbar-inner">
+    <table>
+      <tr>
+        <td class="logo-cell">
+          <a href="#" class="logo-link">
+            <span class="logo-name">Light<span>Browse</span></span>
+            <span class="logo-tag">Fast &bull; Lightweight &bull; Classic Windows</span>
+          </a>
+        </td>
+        <td class="nav-cell">
+          <a href="#">Home</a>
+          <a href="#">Features</a>
+          <a href="#">Screenshots</a>
+          <a href="#">Changelog</a>
+          <a href="#">Source Code</a>
+          <a href="index.html" class="btn-download">Download</a>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+<!-- Main content --> <div id="main"> <div id="main-inner"> <!-- Greeting --> <div id="greeting"> <div id="greeting-text">Welcome to <strong>LightBrowse</strong></div> <div id="greeting-date"></div> </div>
+ 
+    <!-- Search -->
+    <div id="searchbox-wrap">
+      <div class="searchbox-panel">
+        <span class="search-label">Search the Web</span>
+        <form id="search-form" action="https://duckduckgo.com/" method="get" target="_top">
+          <input type="text" id="search-input" name="q" placeholder="Search with DuckDuckGo..." autocomplete="off">
+          <button type="submit" id="search-btn">Search</button>
+        </form>
+        <div class="search-powered">Powered by DuckDuckGo &mdash; no tracking, no filter bubbles</div>
+      </div>
+    </div>
+<!-- Two columns --> <div id="columns"> <!-- Left: quick links --> <div id="col-left">
+ 
+        <div class="panel">
+          <div class="panel-head"><span class="panel-head-title">Quick Links</span></div>
+          <div class="panel-body">
+            <div class="quicklinks-grid">
+              <a href="https://duckduckgo.com" class="ql-item">
+                <span class="ql-icon">&#128270;</span>
+                <span class="ql-label">DuckDuckGo</span>
+              </a>
+              <a href="https://www.wikipedia.org" class="ql-item">
+                <span class="ql-icon">&#128218;</span>
+                <span class="ql-label">Wikipedia</span>
+              </a>
+              <a href="https://www.youtube.com" class="ql-item">
+                <span class="ql-icon">&#9654;</span>
+                <span class="ql-label">YouTube</span>
+              </a>
+              <a href="https://news.ycombinator.com" class="ql-item">
+                <span class="ql-icon">&#128240;</span>
+                <span class="ql-label">Hacker News</span>
+              </a>
+              <a href="https://www.archive.org" class="ql-item">
+                <span class="ql-icon">&#128190;</span>
+                <span class="ql-label">Archive.org</span>
+              </a>
+              <a href="https://www.github.com" class="ql-item">
+                <span class="ql-icon">&#128196;</span>
+                <span class="ql-label">GitHub</span>
+              </a>
+            </div>
+          </div>
+        </div>
+ 
+        <div class="panel">
+          <div class="panel-head"><span class="panel-head-title">Keyboard Shortcuts</span></div>
+          <div class="panel-body">
+            <div class="tip-item"><span class="tip-key">Ctrl+T</span> Open new tab</div>
+            <div class="tip-item"><span class="tip-key">Ctrl+W</span> Close current tab</div>
+            <div class="tip-item"><span class="tip-key">Ctrl+L</span> Focus address bar</div>
+            <div class="tip-item"><span class="tip-key">Ctrl+D</span> Bookmark this page</div>
+            <div class="tip-item"><span class="tip-key">Ctrl+B</span> Show bookmarks</div>
+            <div class="tip-item"><span class="tip-key">Ctrl+H</span> Show history</div>
+            <div class="tip-item"><span class="tip-key">Ctrl+R</span> Refresh page</div>
+            <div class="tip-item"><span class="tip-key">Alt+Left</span> Go back</div>
+          </div>
+        </div>
+</div> <!-- Right: bookmarks --> <div id="col-right">
+ 
+        <div class="panel">
+          <div class="panel-head"><span class="panel-head-title">Bookmarks</span></div>
+          <div class="panel-body">
+ 
+            <!-- Pinned bookmark: Download LightBrowse -->
+            <a href="index.html" class="bookmark-item">
+              <span class="bookmark-icon">&#11088;</span><span class="bookmark-title">Download LightBrowse</span>
+              <span class="bookmark-url">index.html</span>
+            </a>
+<div class="bm-divider"></div>
+ 
+            <a href="https://duckduckgo.com" class="bookmark-item">
+              <span class="bookmark-icon">&#9733;</span><span class="bookmark-title">DuckDuckGo</span>
+              <span class="bookmark-url">duckduckgo.com</span>
+            </a>
+            <a href="https://www.wikipedia.org" class="bookmark-item">
+              <span class="bookmark-icon">&#9733;</span><span class="bookmark-title">Wikipedia</span>
+              <span class="bookmark-url">wikipedia.org</span>
+            </a>
+            <a href="https://news.ycombinator.com" class="bookmark-item">
+              <span class="bookmark-icon">&#9733;</span><span class="bookmark-title">Hacker News</span>
+              <span class="bookmark-url">news.ycombinator.com</span>
+            </a>
+<div class="bm-divider"></div>
+ 
+            <div style="font-size:11px;color:#5a7a9a;padding:4px 2px;">
+              Press <span class="tip-key">Ctrl+D</span> to add more bookmarks
+            </div>
+          </div>
+        </div>
+ 
+        <div class="panel">
+          <div class="panel-head"><span class="panel-head-title">About LightBrowse</span></div>
+          <div class="panel-body">
+            <div style="display:inline-block;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.8px;padding:2px 8px;border-radius:2px;background-image:linear-gradient(to bottom,#f39c12,#d35400);color:#fff;margin-bottom:10px;">Work In Progress</div>
+            <p style="font-size:12px;color:#2a3d52;line-height:1.6;margin-bottom:8px;">A fast, lightweight browser built for classic Windows. Low memory usage, no telemetry.</p>
+            <p style="font-size:12px;color:#2a3d52;line-height:1.6;">For Windows XP, Vista, 7, 8, 10 &bull; x86 and x64</p>
+          </div>
+        </div>
+</div> </div><!-- /columns --> </div> </div>
+ 
+<!-- Footer -->
+<div id="footer">
+  <div id="footer-inner">
+    <table>
+      <tr>
+        <td>
+          <p class="footer-copy">&copy; 2025 LightBrowse Project &bull; Open Source &bull; <a href="#">License</a></p>
+        </td>
+        <td class="footer-links">
+          <a href="#">Home</a>
+          <a href="#">Features</a>
+          <a href="#">Source Code</a>
+          <a href="#">Bug Tracker</a>
+          <a href="#">Contact</a>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+ 
+<script>
+// Greeting with live date/time
+function updateGreeting() {
+  var days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+  var months = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+  var now = new Date();
+  var h = now.getHours();
+  var greeting = h < 12 ? 'Good morning' : h < 17 ? 'Good afternoon' : 'Good evening';
+  document.getElementById('greeting-text').innerHTML = greeting + ' &mdash; welcome to <strong>LightBrowse</strong>';
+  var timeStr = (h < 10 ? '0'+h : h) + ':' + (now.getMinutes()<10?'0':'')+now.getMinutes();
+  document.getElementById('greeting-date').innerText =
+    days[now.getDay()] + ', ' + months[now.getMonth()] + ' ' + now.getDate() + ', ' + now.getFullYear() + '  \u2022  ' + timeStr;
+}
+updateGreeting();
+setInterval(updateGreeting, 30000);
+ 
+// Focus search on load
+window.onload = function() {
+  document.getElementById('search-input').focus();
+};
+</script>
+</body>
+</html>

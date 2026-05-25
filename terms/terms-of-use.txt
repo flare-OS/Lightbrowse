@@ -1,0 +1,61 @@
+Terms of Use for LightBrowse
+Effective Date: May 25, 2026
+
+Welcome to LightBrowse ("the Browser", "LightBrowse", "we", "us", or "our").
+
+By downloading, installing, or using LightBrowse, you agree to these Terms of Use. If you do not agree, do not use the software.
+
+1. License to Use
+LightBrowse grants you a limited, non-exclusive, non-transferable, revocable license to use the browser for personal or commercial purposes in accordance with these terms.
+
+2. Free Software
+LightBrowse is provided completely free of charge.
+
+No purchase, subscription, or payment is required to download, install, or use LightBrowse.
+
+We currently do not charge licensing fees, subscription fees, or hidden fees for any core browser functionality.
+
+If paid features or optional services are introduced in the future, they will be clearly identified and communicated separately.
+
+3. Acceptable Use
+You agree not to use LightBrowse to:
+- Violate any applicable law or regulation
+- Distribute malware, viruses, or harmful code
+- Attempt unauthorized access to systems or networks
+- Engage in fraud, abuse, harassment, or illegal activity
+- Reverse engineer or modify LightBrowse for malicious purposes
+
+4. Downloads and Content
+You are solely responsible for files you download and websites you visit using LightBrowse.
+
+LightBrowse does not control or endorse third-party content accessed through the browser.
+
+5. Updates
+We may provide software updates, bug fixes, security patches, or feature improvements at our discretion.
+
+6. No Warranty
+LightBrowse is provided "AS IS" and "AS AVAILABLE" without warranties of any kind, express or implied.
+
+We do not guarantee:
+- uninterrupted service
+- compatibility with all websites
+- absence of bugs or errors
+- complete security from all threats
+
+7. Limitation of Liability
+To the fullest extent permitted by law, LightBrowse and its developers are not liable for:
+- data loss
+- system damage
+- financial loss
+- indirect or consequential damages
+arising from use of the browser.
+
+8. Termination
+We may terminate or restrict access to LightBrowse if these terms are violated.
+
+9. Changes
+These Terms of Use may be updated periodically. Continued use of LightBrowse means you accept the updated terms.
+
+10. Contact
+For questions, contact:
+asterixany@gmail.com

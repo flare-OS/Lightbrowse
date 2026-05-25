@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=10">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LightBrowse - A Modern Browser for Classic Windows</title>
+<style>
+* { margin: 0; padding: 0; -webkit-box-sizing: border-box; box-sizing: border-box; }
+body { font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif; font-size: 14px; color: #1a1a1a; background: #c8d8e8; min-width: 800px; }
+body {
+  background-color: #4a7fb5;
+  background-image: -ms-linear-gradient(top, #2c5a8c 0%, #5a9fd4 40%, #b8d4ec 100%);
+  background-image: -webkit-linear-gradient(top, #2c5a8c 0%, #5a9fd4 40%, #b8d4ec 100%);
+  background-image: linear-gradient(to bottom, #2c5a8c 0%, #5a9fd4 40%, #b8d4ec 100%);
+  background-attachment: fixed;
+}
+
+/* ===== TOPBAR ===== */
+#topbar {
+  position: relative;
+  z-index: 100;
+  padding: 0;
+  background-color: rgba(18, 42, 72, 0.90);
+  background-image: -ms-linear-gradient(top, rgba(50,90,140,0.95) 0%, rgba(18,42,72,0.95) 100%);
+  background-image: -webkit-linear-gradient(top, rgba(50,90,140,0.95) 0%, rgba(18,42,72,0.95) 100%);
+  background-image: linear-gradient(to bottom, rgba(50,90,140,0.95) 0%, rgba(18,42,72,0.95) 100%);
+  border-bottom: 1px solid rgba(255,255,255,0.18);
+  -webkit-box-shadow: 0 2px 8px rgba(0,0,0,0.5);
+          box-shadow: 0 2px 8px rgba(0,0,0,0.5);
+}
+#topbar-inner { width: 960px; margin: 0 auto; padding: 0; }
+#topbar table { width: 100%; border-collapse: collapse; }
+#topbar table td { padding: 10px 8px; vertical-align: middle; }
+.logo-cell { width: 220px; }
+.logo-link { text-decoration: none; display: inline-block; }
+.logo-name { font-size: 22px; font-weight: 600; color: #ffffff; letter-spacing: -0.5px; text-shadow: 0 1px 3px rgba(0,0,0,0.5); }
+.logo-name span { color: #7ec8f0; }
+.logo-tag { font-size: 10px; color: rgba(255,255,255,0.55); text-transform: uppercase; letter-spacing: 1px; display: block; margin-top: -2px; padding-left: 2px; }
+.nav-cell { text-align: right; }
+.nav-cell a { display: inline-block; color: rgba(255,255,255,0.82); text-decoration: none; font-size: 13px; padding: 5px 12px; margin-left: 2px; border-radius: 3px; border: 1px solid transparent; }
+.nav-cell a:hover { color: #ffffff; background-color: rgba(255,255,255,0.12); border-color: rgba(255,255,255,0.2); }
+.nav-cell a.btn-download { background-color: rgba(50,140,220,0.8); border-color: rgba(120,190,255,0.5); color: #ffffff; font-weight: 600; padding: 5px 14px; }
+.nav-cell a.btn-download:hover { background-color: rgba(70,160,240,0.9); }
+
+/* ===== WIP NOTICE ===== */
+.wip-notice {
+  background-color: rgba(200,140,20,0.88);
+  background-image: -ms-linear-gradient(top, rgba(240,170,30,0.90), rgba(170,110,10,0.90));
+  background-image: -webkit-linear-gradient(top, rgba(240,170,30,0.90), rgba(170,110,10,0.90));
+  background-image: linear-gradient(to bottom, rgba(240,170,30,0.90), rgba(170,110,10,0.90));
+  border-top: 1px solid rgba(255,220,80,0.5);
+  border-bottom: 1px solid rgba(140,90,0,0.5);
+  text-align: center;
+  padding: 6px 0;
+}
+.wip-notice p { font-size: 12px; color: #ffffff; text-shadow: 0 1px 1px rgba(0,0,0,0.3); font-weight: 600; letter-spacing: 0.3px; }
+
+/* ===== HERO ===== */
+#hero { padding: 60px 0 50px 0; }
+#hero-inner { width: 960px; margin: 0 auto; padding: 0 10px; }
+#hero table { width: 100%; border-collapse: collapse; }
+#hero table td { vertical-align: middle; padding: 0; }
+.hero-text-cell { width: 460px; padding-right: 40px !important; }
+.hero-box {
+  background-color: rgba(220,235,250,0.82);
+  border: 1px solid rgba(255,255,255,0.88);
+  border-bottom-color: rgba(80,130,190,0.45);
+  border-right-color: rgba(80,130,190,0.30);
+  -webkit-box-shadow: 0 2px 12px rgba(0,0,0,0.25), inset 0 1px 0 rgba(255,255,255,0.9);
+          box-shadow: 0 2px 12px rgba(0,0,0,0.25), inset 0 1px 0 rgba(255,255,255,0.9);
+  background-image: -ms-linear-gradient(135deg, rgba(255,255,255,0.80) 0%, rgba(200,225,248,0.72) 100%);
+  background-image: -webkit-linear-gradient(135deg, rgba(255,255,255,0.80) 0%, rgba(200,225,248,0.72) 100%);
+  background-image: linear-gradient(to bottom right, rgba(255,255,255,0.80) 0%, rgba(200,225,248,0.72) 100%);
+  border-radius: 4px;
+  padding: 32px 36px;
+}
+.hero-eyebrow { font-size: 11px; text-transform: uppercase; letter-spacing: 2px; color: #2a6aad; margin-bottom: 10px; font-weight: 600; }
+.hero-title { font-size: 36px; font-weight: 300; color: #0d2a4a; line-height: 1.18; margin-bottom: 14px; letter-spacing: -0.5px; }
+.hero-title strong { font-weight: 700; color: #1558a0; }
+.hero-sub { font-size: 15px; color: #2a3d52; line-height: 1.65; margin-bottom: 26px; }
+.hero-buttons table { border-collapse: collapse; }
+.hero-buttons td { padding: 0 10px 0 0 !important; }
+.btn-primary {
+  display: inline-block; text-decoration: none; font-size: 14px; font-weight: 600; color: #ffffff; padding: 10px 24px; border-radius: 3px; border: 1px solid #1565c0;
+  background-color: #1976d2;
+  background-image: -ms-linear-gradient(top, #2196f3, #1565c0);
+  background-image: -webkit-linear-gradient(top, #2196f3, #1565c0);
+  background-image: linear-gradient(to bottom, #2196f3, #1565c0);
+  -webkit-box-shadow: 0 2px 4px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.25);
+          box-shadow: 0 2px 4px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.25);
+  text-shadow: 0 1px 1px rgba(0,0,0,0.3);
+}
+.btn-primary:hover {
+  background-image: -ms-linear-gradient(top, #42a5f5, #1976d2);
+  background-image: -webkit-linear-gradient(top, #42a5f5, #1976d2);
+  background-image: linear-gradient(to bottom, #42a5f5, #1976d2);
+}
+.btn-secondary {
+  display: inline-block; text-decoration: none; font-size: 14px; font-weight: 600; color: #1a3a5c; padding: 10px 20px; border-radius: 3px; border: 1px solid rgba(60,110,180,0.4);
+  background-color: rgba(255,255,255,0.65);
+  background-image: -ms-linear-gradient(top, rgba(255,255,255,0.8), rgba(200,220,240,0.7));
+  background-image: -webkit-linear-gradient(top, rgba(255,255,255,0.8), rgba(200,220,240,0.7));
+  background-image: linear-gradient(to bottom, rgba(255,255,255,0.8), rgba(200,220,240,0.7));
+  -webkit-box-shadow: 0 1px 3px rgba(0,0,0,0.18), inset 0 1px 0 rgba(255,255,255,0.9);
+          box-shadow: 0 1px 3px rgba(0,0,0,0.18), inset 0 1px 0 rgba(255,255,255,0.9);
+}
+.hero-platform { font-size: 12px; color: #3a6a9a; margin-top: 14px; }
+
+/* Screenshot image */
+.hero-screenshot {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 3px;
+  -webkit-box-shadow: 0 6px 30px rgba(0,0,0,0.45), 0 1px 0 rgba(255,255,255,0.2);
+          box-shadow: 0 6px 30px rgba(0,0,0,0.45), 0 1px 0 rgba(255,255,255,0.2);
+  border: 1px solid rgba(80,120,180,0.4);
+}
+.hero-image-cell { vertical-align: middle; }
+
+/* ===== CONTENT ===== */
+#content { padding-bottom: 50px; }
+#content-inner { width: 960px; margin: 0 auto; padding: 0 10px; }
+
+/* ===== FEATURES STRIP ===== */
+#features-strip { padding: 0 0 36px 0; }
+.features-strip-box {
+  background-color: rgba(210,230,250,0.78);
+  border: 1px solid rgba(255,255,255,0.85);
+  border-bottom-color: rgba(80,130,190,0.4);
+  -webkit-box-shadow: 0 2px 8px rgba(0,0,0,0.18), inset 0 1px 0 rgba(255,255,255,0.85);
+          box-shadow: 0 2px 8px rgba(0,0,0,0.18), inset 0 1px 0 rgba(255,255,255,0.85);
+  background-image: -ms-linear-gradient(top, rgba(255,255,255,0.72) 0%, rgba(190,218,245,0.68) 100%);
+  background-image: -webkit-linear-gradient(top, rgba(255,255,255,0.72) 0%, rgba(190,218,245,0.68) 100%);
+  background-image: linear-gradient(to bottom, rgba(255,255,255,0.72) 0%, rgba(190,218,245,0.68) 100%);
+  border-radius: 4px; overflow: hidden;
+}
+.features-strip-box table { width: 100%; border-collapse: collapse; }
+.feature-col { width: 25%; padding: 28px 24px !important; vertical-align: top; border-right: 1px solid rgba(120,160,210,0.25); }
+.feature-col:last-child { border-right: none; }
+.feature-title { font-size: 14px; font-weight: 700; color: #0d2a4a; margin-bottom: 6px; }
+.feature-desc { font-size: 13px; color: #3a5070; line-height: 1.55; }
+
+/* ===== SECTION TITLE ===== */
+.section-title { font-size: 22px; font-weight: 300; color: #ffffff; text-align: center; text-shadow: 0 1px 4px rgba(0,0,0,0.4); margin: 42px 0 20px 0; letter-spacing: -0.3px; }
+.section-title strong { font-weight: 700; }
+.section-divider { width: 50px; height: 2px; background-color: #7ec8f0; margin: 0 auto 32px auto; }
+
+/* ===== INFO BLOCKS ===== */
+#info-blocks { padding-bottom: 36px; }
+.info-block-table { width: 100%; border-collapse: collapse; }
+.info-block-table td { vertical-align: top; padding: 0 12px !important; width: 33.33%; }
+.info-block-table td:first-child { padding-left: 0 !important; }
+.info-block-table td:last-child { padding-right: 0 !important; }
+.info-card { border-radius: 4px; overflow: hidden; }
+.info-card-head {
+  background-color: #1c4880;
+  background-image: -ms-linear-gradient(top, #2a6aad, #1c4880);
+  background-image: -webkit-linear-gradient(top, #2a6aad, #1c4880);
+  background-image: linear-gradient(to bottom, #2a6aad, #1c4880);
+  padding: 12px 16px; border: 1px solid rgba(255,255,255,0.2); border-bottom: none;
+}
+.info-card-head-title { font-size: 13px; font-weight: 700; color: #ffffff; text-shadow: 0 1px 2px rgba(0,0,0,0.4); text-transform: uppercase; letter-spacing: 0.8px; }
+.info-card-body {
+  background-color: rgba(220,235,250,0.85);
+  background-image: -ms-linear-gradient(top, rgba(255,255,255,0.80), rgba(200,225,248,0.75));
+  background-image: -webkit-linear-gradient(top, rgba(255,255,255,0.80), rgba(200,225,248,0.75));
+  background-image: linear-gradient(to bottom, rgba(255,255,255,0.80), rgba(200,225,248,0.75));
+  border: 1px solid rgba(255,255,255,0.8); border-bottom-color: rgba(80,130,190,0.4);
+  -webkit-box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+          box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  padding: 18px 16px;
+}
+.info-card-body p { font-size: 13px; color: #2a3d52; line-height: 1.6; margin-bottom: 10px; }
+.info-card-body p:last-child { margin-bottom: 0; }
+.info-card-body ul { margin: 0 0 10px 18px; padding: 0; }
+.info-card-body ul li { font-size: 13px; color: #2a3d52; line-height: 1.7; }
+.status-badge {
+  display: inline-block; font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.8px; padding: 3px 8px; border-radius: 2px;
+  background-color: #e67e22;
+  background-image: -ms-linear-gradient(top, #f39c12, #d35400);
+  background-image: -webkit-linear-gradient(top, #f39c12, #d35400);
+  background-image: linear-gradient(to bottom, #f39c12, #d35400);
+  color: #ffffff;
+  -webkit-box-shadow: 0 1px 2px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.2);
+          box-shadow: 0 1px 2px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.2);
+  margin-bottom: 10px;
+}
+.status-badge-blue {
+  background-color: #1976d2;
+  background-image: -ms-linear-gradient(top, #42a5f5, #1565c0);
+  background-image: -webkit-linear-gradient(top, #42a5f5, #1565c0);
+  background-image: linear-gradient(to bottom, #42a5f5, #1565c0);
+}
+
+/* ===== DOWNLOAD ===== */
+#download-strip { padding: 32px 0; }
+.download-box {
+  background-color: rgba(15,40,85,0.85);
+  background-image: -ms-linear-gradient(top, rgba(30,65,120,0.90), rgba(10,30,70,0.88));
+  background-image: -webkit-linear-gradient(top, rgba(30,65,120,0.90), rgba(10,30,70,0.88));
+  background-image: linear-gradient(to bottom, rgba(30,65,120,0.90), rgba(10,30,70,0.88));
+  border: 1px solid rgba(255,255,255,0.15); border-bottom-color: rgba(0,0,0,0.5);
+  -webkit-box-shadow: 0 2px 12px rgba(0,0,0,0.35), inset 0 1px 0 rgba(255,255,255,0.10);
+          box-shadow: 0 2px 12px rgba(0,0,0,0.35), inset 0 1px 0 rgba(255,255,255,0.10);
+  border-radius: 4px; padding: 30px 40px; text-align: center;
+}
+.download-box h2 { font-size: 20px; font-weight: 300; color: #ffffff; margin-bottom: 8px; text-shadow: 0 1px 3px rgba(0,0,0,0.5); }
+.download-box h2 strong { font-weight: 700; color: #7ec8f0; }
+.download-box p { font-size: 13px; color: rgba(200,220,240,0.85); margin-bottom: 22px; line-height: 1.5; }
+.download-table { border-collapse: collapse; margin: 0 auto; }
+.download-table td { padding: 0 8px !important; vertical-align: middle; }
+.btn-big-download {
+  display: inline-block; text-decoration: none; font-size: 15px; font-weight: 700; color: #ffffff; padding: 12px 30px; border-radius: 3px; border: 1px solid #0d47a1;
+  background-color: #1565c0;
+  background-image: -ms-linear-gradient(top, #1e88e5, #0d47a1);
+  background-image: -webkit-linear-gradient(top, #1e88e5, #0d47a1);
+  background-image: linear-gradient(to bottom, #1e88e5, #0d47a1);
+  -webkit-box-shadow: 0 2px 6px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.2);
+          box-shadow: 0 2px 6px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.2);
+  text-shadow: 0 1px 2px rgba(0,0,0,0.4);
+}
+.download-note { font-size: 12px !important; color: rgba(160,190,220,0.7) !important; margin-bottom: 0 !important; }
+
+/* ===== FOOTER ===== */
+#footer { background-color: rgba(8,20,45,0.90); border-top: 1px solid rgba(255,255,255,0.10); padding: 20px 0; }
+#footer-inner { width: 960px; margin: 0 auto; padding: 0 10px; }
+#footer table { width: 100%; border-collapse: collapse; }
+#footer td { padding: 0 !important; vertical-align: middle; }
+.footer-copy { font-size: 12px; color: rgba(180,200,225,0.6); }
+.footer-copy a { color: rgba(126,200,240,0.8); text-decoration: none; }
+.footer-links { text-align: right; }
+.footer-links a { font-size: 12px; color: rgba(180,200,225,0.65); text-decoration: none; margin-left: 18px; }
+.footer-links a:hover { color: rgba(126,200,240,0.9); text-decoration: underline; }
+</style>
+</head>
+<body>
+
+<!-- WIP Notice -->
+<div class="wip-notice">
+  <p>LightBrowse is currently in active development. Features may change. Some downloads are not yet available.</p>
+</div>
+
+<!-- Top Navigation Bar -->
+<div id="topbar">
+  <div id="topbar-inner">
+    <table>
+      <tr>
+        <td class="logo-cell">
+          <a href="#" class="logo-link">
+            <span class="logo-name">Light<span>Browse</span></span>
+            <span class="logo-tag">Fast &bull; Lightweight &bull; Classic Windows</span>
+          </a>
+        </td>
+        <td class="nav-cell">
+          <a href="#">Home</a>
+          <a href="#">Features</a>
+          <a href="#">Screenshots</a>
+          <a href="#">Changelog</a>
+          <a href="#">Source Code</a>
+          <a href="#download" class="btn-download">Download</a>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+
+<!-- Hero Section -->
+<div id="hero">
+  <div id="hero-inner">
+    <table>
+      <tr>
+        <td class="hero-text-cell">
+          <div class="hero-box">
+            <p class="hero-eyebrow">Introducing LightBrowse</p>
+            <h1 class="hero-title">A <strong>fast, lightweight</strong> browser<br>built for classic Windows.</h1>
+            <p class="hero-sub">LightBrowse is a no-nonsense web browser designed for older Windows systems. Clean interface, low memory usage, and no telemetry. Browse the modern web on vintage hardware.</p>
+            <div class="hero-buttons">
+              <table>
+                <tr>
+                  <td><a href="#download" class="btn-primary">Download LightBrowse</a></td>
+                  <td><a href="#features" class="btn-secondary">See Features</a></td>
+                </tr>
+              </table>
+            </div>
+            <p class="hero-platform">For Windows XP, Vista, 7, 8, 10 &bull; x86 and x64</p>
+          </div>
+        </td>
+        <td class="hero-image-cell">
+          <img src="ss.png" alt="LightBrowse screenshot" class="hero-screenshot">
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+
+<!-- Main content -->
+<div id="content">
+  <div id="content-inner">
+
+    <!-- Features strip -->
+    <div id="features-strip">
+      <div class="features-strip-box">
+        <table>
+          <tr>
+            <td class="feature-col">
+              <div class="feature-title">Blazing Fast</div>
+              <p class="feature-desc">Optimized rendering engine keeps memory usage low. Pages load quickly even on older hardware with limited RAM.</p>
+            </td>
+            <td class="feature-col">
+              <div class="feature-title">Privacy First</div>
+              <p class="feature-desc">No telemetry, no crash reports sent home, no tracking. What you browse stays on your machine. Period.</p>
+            </td>
+            <td class="feature-col">
+              <div class="feature-title">Modern Web Support</div>
+              <p class="feature-desc">Full HTML5, CSS3, and ES6+ support. Render today's websites correctly without requiring a modern OS.</p>
+            </td>
+            <td class="feature-col">
+              <div class="feature-title">Portable</div>
+              <p class="feature-desc">Run from a USB drive with no installation needed. Carry your browser and settings anywhere you go.</p>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </div>
+
+    <!-- About / Status / System Requirements -->
+    <h2 class="section-title">About <strong>LightBrowse</strong></h2>
+    <div class="section-divider"></div>
+
+    <div id="info-blocks">
+      <table class="info-block-table">
+        <tr>
+          <td>
+            <div class="info-card">
+              <div class="info-card-head">
+                <div class="info-card-head-title">About the Project</div>
+              </div>
+              <div class="info-card-body">
+                <div class="status-badge">Work In Progress</div>
+                <p>LightBrowse is an independent open-source web browser project focused on delivering a usable, modern browsing experience on older Windows versions.</p>
+                <p>The project is currently in early development. A public alpha is planned for release once core rendering and navigation functionality is stable.</p>
+                <p>Built with love for anyone who still runs Windows XP through 7 and wants a browser that doesn&#39;t phone home.</p>
+              </div>
+            </div>
+          </td>
+          <td>
+            <div class="info-card">
+              <div class="info-card-head">
+                <div class="info-card-head-title">Planned Features</div>
+              </div>
+              <div class="info-card-body">
+                <div class="status-badge status-badge-blue">Roadmap</div>
+                <ul>
+                  <li>Tabbed browsing with tab groups</li>
+                  <li>Custom user agent switching</li>
+                  <li>Built-in ad/tracker blocker</li>
+                  <li>Download manager with resume</li>
+                  <li>Bookmark sync (local, no cloud)</li>
+                  <li>Extension/plugin support</li>
+                  <li>Session restore on crash</li>
+                  <li>Custom themes &amp; skins</li>
+                </ul>
+              </div>
+            </div>
+          </td>
+          <td>
+            <div class="info-card">
+              <div class="info-card-head">
+                <div class="info-card-head-title">System Requirements</div>
+              </div>
+              <div class="info-card-body">
+                <div class="status-badge status-badge-blue">All Platforms</div>
+                <ul>
+                  <li><strong>OS:</strong> Windows XP SP3 or later</li>
+                  <li><strong>CPU:</strong> 800 MHz or faster</li>
+                  <li><strong>RAM:</strong> 256 MB minimum</li>
+                  <li><strong>Disk:</strong> 30 MB free space</li>
+                  <li><strong>Display:</strong> 800x600 or higher</li>
+                </ul>
+                <p style="margin-top:10px;">Also works great on Windows Vista, 7, 8, 8.1, and 10. Linux/Wine support is planned.</p>
+              </div>
+            </div>
+          </td>
+        </tr>
+      </table>
+    </div>
+
+    <!-- Download Section -->
+    <div id="download" style="padding-top:10px;">
+      <div id="download-strip">
+        <div class="download-box">
+          <h2>Download <strong>LightBrowse</strong></h2>
+          <p>Builds are not yet available &mdash; check back soon! You can follow development on the source repository.</p>
+          <table class="download-table">
+            <tr>
+              <td><a href="#" class="btn-big-download">Windows (x86/x64)</a></td>
+              <td><a href="#" class="btn-secondary" style="padding: 12px 20px; color: rgba(200,230,255,0.85); border-color: rgba(100,160,220,0.4); background-image: none; background-color: rgba(255,255,255,0.10);">View Source</a></td>
+            </tr>
+          </table>
+          <p class="download-note" style="margin-top:18px;">No installer required &bull; Portable .zip available &bull; Free and open source</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- Footer -->
+<div id="footer">
+  <div id="footer-inner">
+    <table>
+      <tr>
+        <td>
+          <p class="footer-copy">
+            &copy; 2025 LightBrowse Project &bull; Open Source Software &bull;
+            <a href="#">License</a>
+          </p>
+        </td>
+        <td class="footer-links">
+          <a href="#">Home</a>
+          <a href="#">Features</a>
+          <a href="#">Source Code</a>
+          <a href="#">Bug Tracker</a>
+          <a href="#">Contact</a>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+
+</body>
+</html>

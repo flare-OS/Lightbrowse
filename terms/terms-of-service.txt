@@ -1,0 +1,60 @@
+Terms of Service for LightBrowse
+Effective Date: May 25, 2026
+
+These Terms of Service ("Terms") govern your use of LightBrowse.
+
+By using LightBrowse, you agree to comply with these Terms.
+
+1. Service Description
+LightBrowse is a web browser built using the Internet Explorer rendering engine, designed to provide a lightweight browsing experience with a privacy-first approach.
+
+2. Free Software
+LightBrowse is provided completely free of charge.
+
+No purchase, subscription, or payment is required to download, install, or use LightBrowse.
+
+We currently do not charge licensing fees, subscription fees, or hidden fees for any core browser functionality.
+
+If paid features or optional services are introduced in the future, they will be clearly identified and communicated separately.
+
+3. Availability
+We aim to keep LightBrowse available and functional but do not guarantee uninterrupted availability or support.
+
+4. User Responsibilities
+You are responsible for:
+- your device security
+- your internet connection
+- your downloaded files
+- compliance with local laws
+
+5. Privacy
+LightBrowse is designed to collect no personal data by default. Please review the Privacy Policy for details.
+
+6. Third-Party Services
+Websites, downloads, plugins, or services accessed through LightBrowse may have separate terms and privacy policies. We are not responsible for third-party services.
+
+7. Intellectual Property
+LightBrowse, its branding, logo, and software remain the property of its owners unless otherwise stated.
+
+You may not redistribute or rebrand LightBrowse without written permission.
+
+8. Disclaimer
+LightBrowse is provided without guarantees of fitness, reliability, or compatibility for every purpose.
+
+9. Limitation of Liability
+We are not responsible for any damages resulting from:
+- browser crashes
+- website incompatibility
+- download issues
+- third-party content
+- user misuse
+
+10. Termination of Service
+We reserve the right to discontinue LightBrowse or any related services at any time without prior notice.
+
+11. Changes to Terms
+We may modify these Terms at any time. Updated versions become effective when published.
+
+12. Contact
+Questions regarding these Terms can be sent to:
+asterixany@gmail.com

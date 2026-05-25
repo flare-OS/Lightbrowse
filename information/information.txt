@@ -1,0 +1,20 @@
+Welcome to LightBrowse! | A lightweight browser for any Windows version! | Built using Internet Explorer's engine
+----------------------------------------------------------------------------------------------------------------------------------------------------
+
+LightBrowse is a no-nonsense web browser designed for older Windows systems. It features a clean interface, low memory usage, and zero telemetry—making it ideal for browsing on vintage hardware.
+
+With Portable Mode, you can run LightBrowse directly from a USB drive with no installation required. Take your browser and settings anywhere you go.
+
+Features:
+- Lightweight and fast
+- Compatible with older Windows versions
+- No telemetry or data collection
+- Portable mode support
+- Free to use
+
+--| Warning |--
+LightBrowse is currently in early alpha development.
+
+At this stage, browser data such as settings, session data, and temporary browsing information are stored only in memory while the browser is open. This means your data may be lost when LightBrowse is closed.
+
+Local storage support (for saving settings, bookmarks, and other browser data) is planned for a future release.
